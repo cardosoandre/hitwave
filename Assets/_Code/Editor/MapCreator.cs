@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using NUnit.Framework;
 
 
 public class MapCreator :EditorWindow {
 
     int x = 5;
-    int y = 5;
+    int z = 5;
+    int UndergroundBlocks = 2;
     float tileWidth = 1.0f;
-    float tileHeight = 1.0f;
+    float tileDepth = 1.0f;
+    float blockHeight = 1.0f;
     Transform target;
     GameObject tilePrefab;
+    GameObject blockPrefab;
     bool deletePrevious;
 
     [MenuItem("Window/Map Creator")]
@@ -25,10 +27,13 @@ public class MapCreator :EditorWindow {
     {
         target = EditorGUILayout.ObjectField("Target", target, typeof(Transform), true) as Transform;
         tilePrefab = EditorGUILayout.ObjectField("Tile Prefab", tilePrefab, typeof(GameObject), false) as GameObject;
+        blockPrefab = EditorGUILayout.ObjectField("Block Prefab", blockPrefab, typeof(GameObject), false) as GameObject;
         x = EditorGUILayout.IntField("X Tiles", x);
-        y = EditorGUILayout.IntField("Y Tiles", y);
+        z = EditorGUILayout.IntField("Y Tiles", z);
+        UndergroundBlocks = EditorGUILayout.IntField("Underground Blocks", UndergroundBlocks);
         tileWidth = EditorGUILayout.FloatField("Tile Width", tileWidth);
-        tileHeight = EditorGUILayout.FloatField("Tile Height", tileHeight);
+        tileDepth = EditorGUILayout.FloatField("Tile Depth", tileDepth);
+        blockHeight = EditorGUILayout.FloatField("Block Height", tileDepth);
         deletePrevious = EditorGUILayout.Toggle("Clear Tiles", deletePrevious);
 
         if (GUILayout.Button("Generate Map"))
@@ -55,20 +60,34 @@ public class MapCreator :EditorWindow {
         if (Map == null)
             Map = target.gameObject.AddComponent<Map>();
         Map.Width = x;
-        Map.Height = y;
+        Map.Height = z;
+        Map.tileWidth = tileWidth;
+        Map.tileDepth = tileDepth;
+        Map.blockHeight = blockHeight;
+        Map.BlockPrefab = blockPrefab;
+        Map.TilePrefab = tilePrefab;
         for (int i = 0; i < x; i++)
         {
             GameObject row = new GameObject();
             row.name = i.ToString();
             row.transform.parent = target;
-            row.transform.localPosition = Vector3.forward * tileHeight * (i+0.5f);
+            row.transform.localPosition = Vector3.right * tileWidth * (i+0.5f);
             row.transform.localScale = Vector3.one;
-            for (int j = 0; j < y; j++)
+            for (int j = 0; j < z; j++)
             {
-                GameObject newObj =PrefabUtility.InstantiatePrefab(tilePrefab) as GameObject;
-                newObj.name = string.Format("[{0},{1}]", i, j);
-                newObj.transform.parent = row.transform;
-                newObj.transform.localPosition = Vector3.right * tileWidth * (j + 0.5f);
+                GameObject tileObj =PrefabUtility.InstantiatePrefab(tilePrefab) as GameObject;
+                Tile tile = tileObj.GetComponent<Tile>();
+                tileObj.name = string.Format("[{0},{1}]", i, j);
+                tileObj.transform.parent = row.transform;
+                tileObj.transform.localPosition = Vector3.forward * tileDepth * (j + 0.5f);
+                tile.PosX = i;
+                tile.PosZ = j;
+                for (int k = 0; k < UndergroundBlocks; k++)
+                {
+                    GameObject block = PrefabUtility.InstantiatePrefab(blockPrefab) as GameObject;
+                    block.transform.parent = tileObj.transform;
+                    block.transform.position = tileObj.transform.position + Vector3.down * (blockHeight * (k + 0.5f) + 0.001f);
+                }
             }
             Undo.RegisterCreatedObjectUndo(row, "Create Map");
         }
