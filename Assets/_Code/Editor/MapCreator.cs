@@ -3,17 +3,9 @@ using UnityEditor;
 
 
 public class MapCreator :EditorWindow {
-
-    //int x = 5;
-    //int z = 5;
-    //int UndergroundBlocks = 2;
-    //float tileWidth = 1.0f;
-    //float tileDepth = 1.0f;
-    //float blockHeight = 1.0f;
+    
     Transform target;
-    //GameObject tilePrefab;
-    //GameObject blockPrefab;
-    bool deletePrevious;
+    bool deletePrevious = true;
     MapConfigs configs;
 
     [MenuItem("Window/Map Creator")]
@@ -28,14 +20,6 @@ public class MapCreator :EditorWindow {
     {
         target = EditorGUILayout.ObjectField("Target", target, typeof(Transform), true) as Transform;
         configs = EditorGUILayout.ObjectField("Map Configuration", configs, typeof(MapConfigs), false) as MapConfigs;
-        //tilePrefab = EditorGUILayout.ObjectField("Tile Prefab", tilePrefab, typeof(GameObject), false) as GameObject;
-        //blockPrefab = EditorGUILayout.ObjectField("Block Prefab", blockPrefab, typeof(GameObject), false) as GameObject;
-        //x = EditorGUILayout.IntField("X Tiles", x);
-        //z = EditorGUILayout.IntField("Y Tiles", z);
-        //UndergroundBlocks = EditorGUILayout.IntField("Underground Blocks", UndergroundBlocks);
-        //tileWidth = EditorGUILayout.FloatField("Tile Width", tileWidth);
-        //tileDepth = EditorGUILayout.FloatField("Tile Depth", tileDepth);
-        //blockHeight = EditorGUILayout.FloatField("Block Height", tileDepth);
         deletePrevious = EditorGUILayout.Toggle("Clear Tiles", deletePrevious);
 
         if (GUILayout.Button("Generate Map"))
@@ -61,13 +45,6 @@ public class MapCreator :EditorWindow {
         var Map = target.GetComponent<Map>();
         if (Map == null)
             Map = target.gameObject.AddComponent<Map>();
-        Map.Width = configs.MapXSize;
-        Map.Height = configs.MapZSize;
-        Map.tileWidth = configs.TileWidth;
-        Map.tileDepth = configs.TileDepth;
-        Map.blockHeight = configs.BlockHeight;
-        Map.BlockPrefab = configs.BlockPrefab;
-        Map.TilePrefab = configs.TilePrefab;
         for (int i = 0; i < configs.MapXSize; i++)
         {
             GameObject row = new GameObject();

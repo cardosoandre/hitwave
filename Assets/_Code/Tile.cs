@@ -3,26 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Zenject;
 
 [RequireComponent(typeof(MeshRenderer))]
 public class Tile : MonoBehaviour, 
     IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
+    [Inject]
+    MapConfigs configs;
+    [Inject]
+    Player player;
 
-    MeshRenderer meshRenderer;
+    MeshRenderer mr;
     LinkedList<Block> blocks;
 
     bool HasCursor = false;
-    public Material Standard;
-    public Material Hover;
-    public Material Blocked;
+    //public Material Standard;
+    //public Material Hover;
+    //public Material Blocked;
 
     [HideInInspector]
     public int PosX, PosZ;
 
-
-    public Map Map{ get; set; }
+    [Inject]
+    Map Map;
     public int Height{ get; private set; }
-    public bool CanBuild
+    public bool CanBuildHere
     {
         get
         {
@@ -39,12 +44,12 @@ public class Tile : MonoBehaviour,
 
     private void Update()
     {
-        if (!CanBuild)
-            meshRenderer.material = Blocked;
-        else if (HasCursor)
-            meshRenderer.material = Hover;
-        else
-            meshRenderer.material = Standard;
+        //if (!CanBuildHere)
+        //    meshRenderer.material = Blocked;
+        //else if (HasCursor)
+        //    meshRenderer.material = Hover;
+        //else
+        //    meshRenderer.material = Standard;
     }
     void Awake()
     {
@@ -54,38 +59,46 @@ public class Tile : MonoBehaviour,
         {
             blocks.AddLast(child.GetComponent<Block>());
         }
-        meshRenderer = GetComponent<MeshRenderer>();
-    }
-    void OnDisable()
-    {
-        if(meshRenderer != null)
-            meshRenderer.material = Standard;
+        mr = GetComponent<MeshRenderer>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         HasCursor = true;
+        foreach (var block in blocks)
+        {
+            block.OnHover();
+        }
     }
     public void OnPointerExit(PointerEventData eventData)
     {
+        foreach (var block in blocks)
+        {
+            block.OnIdle();
+        }
         HasCursor = false;
     }
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            if (CanBuild)
+            if (CanBuildHere && player.Sand > 0)
+            {
+                player.Sand--;
                 Raise();
+            }
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
+            player.Sand++;
             Lower();
         }
     }
 
     public void Raise()
     {
-        var block = GameObject.Instantiate(Map.BlockPrefab);
+        
+        var block = GameObject.Instantiate(configs.BlockPrefab);
         block.transform.parent = transform;
         block.transform.position = Map.GetTargetPositionFor(PosX, Height, PosZ);
         block.transform.SetAsFirstSibling();

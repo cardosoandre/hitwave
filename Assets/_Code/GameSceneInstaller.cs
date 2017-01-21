@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-[CreateAssetMenu()]
-public class GameSceneInstaller:ScriptableObjectInstaller {
-    public GameObject TilePrefab;
-    public GameObject BlockPrefab;
+public class GameSceneInstaller:MonoInstaller {
     public Map map;
+    public MapConfigs configs;
     
+    public override void InstallBindings()
+    {
+        Container.Bind<Map>().FromInstance(map);
+        Container.Bind<MapConfigs>().FromInstance(configs);
+        Container.Bind<Player>().AsSingle();
+    }
 }
