@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 64492902320834756}
   - component: {fileID: 23438617212071966}
   - component: {fileID: 114044433091088144}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,3 +108,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Standard: {fileID: 2100000, guid: 4f5a91a6e48248641a5a8fd7dfe79116, type: 2}
   Hover: {fileID: 2100000, guid: 589a0799151e3e24eb6d749a7a35b68e, type: 2}
+  Blocked: {fileID: 0}
+  PosX: 0
+  PosZ: 0

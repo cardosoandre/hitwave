@@ -14,10 +14,7 @@ public class Map : MonoBehaviour {
     public GameObject TilePrefab;
 
 
-
-
-
-
+    
     void Awake()
     {
         SetupTiles();
@@ -47,5 +44,11 @@ public class Map : MonoBehaviour {
     public Vector3 GetTargetPositionFor(int x, int y, int z)
     {
         return transform.position + new Vector3((x + 0.5f) * tileWidth , (y + 0.5f) * blockHeight, (z + 0.5f) * tileDepth);
+    }
+    public Tile GetTileAt(int x, int z)
+    {
+        if (x < 0 || z < 0 || x >= Width || z >= Height)
+            return null;
+        return tiles[x, z];
     }
 }

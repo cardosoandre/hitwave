@@ -11,20 +11,41 @@ public class Tile : MonoBehaviour,
     MeshRenderer meshRenderer;
     LinkedList<Block> blocks;
 
-
+    bool HasCursor = false;
     public Material Standard;
     public Material Hover;
+    public Material Blocked;
 
-    //[HideInInspector]
+    [HideInInspector]
     public int PosX, PosZ;
 
 
     public Map Map{ get; set; }
     public int Height{ get; private set; }
+    public bool CanBuild
+    {
+        get
+        {
+            int baseNeighbors = 0;
+            foreach (var neighbor in GetNeighbors())
+            {
+                if (neighbor.Height >= Height)
+                    baseNeighbors++;
+            }
+            return baseNeighbors >= 2;
+        }
+    }
 
 
-
-
+    private void Update()
+    {
+        if (!CanBuild)
+            meshRenderer.material = Blocked;
+        else if (HasCursor)
+            meshRenderer.material = Hover;
+        else
+            meshRenderer.material = Standard;
+    }
     void Awake()
     {
         Map = GetComponentInParent<Map>();
@@ -43,16 +64,19 @@ public class Tile : MonoBehaviour,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        meshRenderer.material = Hover;
+        HasCursor = true;
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        meshRenderer.material = Standard;
+        HasCursor = false;
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(eventData.button == PointerEventData.InputButton.Left)
-            Raise();
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            if (CanBuild)
+                Raise();
+        }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
             Lower();
@@ -67,7 +91,7 @@ public class Tile : MonoBehaviour,
         block.transform.SetAsFirstSibling();
         blocks.AddFirst(block.GetComponent<Block>());
         Height++;
-
+    
         Debug.Assert(blocks.First.Value != null);
     }
     public void Lower()
@@ -75,5 +99,16 @@ public class Tile : MonoBehaviour,
         Destroy(blocks.First.Value.gameObject);
         blocks.RemoveFirst();
         Height--;
+    }
+    public List<Tile> GetNeighbors(bool includeNull = false)
+    {
+        var result = new List<Tile>();
+        result.Add(Map.GetTileAt(PosX - 1, PosZ));
+        result.Add(Map.GetTileAt(PosX, PosZ - 1));
+        result.Add(Map.GetTileAt(PosX + 1, PosZ));
+        result.Add(Map.GetTileAt(PosX, PosZ + 1));
+        if(!includeNull)
+            result.RemoveAll((Tile t) => t == null);
+        return result;
     }
 }
