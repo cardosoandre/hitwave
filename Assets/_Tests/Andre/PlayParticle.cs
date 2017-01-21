@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayParticle : MonoBehaviour {
 
+	public ParticleSystem sandust;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -12,5 +14,9 @@ public class PlayParticle : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	public void sanDust(){
+		sandust.Play ();
 	}
 }
