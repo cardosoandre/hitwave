@@ -108,6 +108,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Standard: {fileID: 2100000, guid: 4f5a91a6e48248641a5a8fd7dfe79116, type: 2}
   Hover: {fileID: 2100000, guid: 589a0799151e3e24eb6d749a7a35b68e, type: 2}
-  Blocked: {fileID: 0}
+  Blocked: {fileID: 2100000, guid: 56db75f4ce407824b92e849065e4ade2, type: 2}
   PosX: 0
   PosZ: 0
