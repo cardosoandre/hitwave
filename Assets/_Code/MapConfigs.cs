@@ -11,6 +11,8 @@ public class MapConfigs : ScriptableObject {
     public int MapZSize;
     public int UndergroundBlocks;
 
+    public int[] BlockHealthValues;
+
     public float TileWidth;
     public float TileDepth;
     public float BlockHeight;

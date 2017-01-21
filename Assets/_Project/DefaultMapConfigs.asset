@@ -17,6 +17,7 @@ MonoBehaviour:
   MapXSize: 10
   MapZSize: 5
   UndergroundBlocks: 3
+  BlockHealthValues: 0000000002000000060000000c000000
   TileWidth: 1
   TileDepth: 1
   BlockHeight: 1

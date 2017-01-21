@@ -12,20 +12,17 @@ public class Tile : MonoBehaviour,
     MapConfigs configs;
     [Inject]
     Player player;
+    [Inject]
+    Map Map;
 
     MeshRenderer mr;
     LinkedList<Block> blocks;
 
-    bool HasCursor = false;
-    //public Material Standard;
-    //public Material Hover;
-    //public Material Blocked;
+
 
     [HideInInspector]
     public int PosX, PosZ;
 
-    [Inject]
-    Map Map;
     public int Height{ get; private set; }
     public bool CanBuildHere
     {
@@ -39,6 +36,12 @@ public class Tile : MonoBehaviour,
             }
             return baseNeighbors >= 2;
         }
+    }
+
+
+    public int Resistance
+    {
+        get; private set;
     }
 
 
@@ -64,7 +67,6 @@ public class Tile : MonoBehaviour,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        HasCursor = true;
         foreach (var block in blocks)
         {
             block.OnHover();
@@ -76,7 +78,6 @@ public class Tile : MonoBehaviour,
         {
             block.OnIdle();
         }
-        HasCursor = false;
     }
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -104,6 +105,11 @@ public class Tile : MonoBehaviour,
         block.transform.SetAsFirstSibling();
         blocks.AddFirst(block.GetComponent<Block>());
         Height++;
+        
+        if(Height > 0)
+        {
+            Resistance = configs.BlockHealthValues[Height];
+        }
     
         Debug.Assert(blocks.First.Value != null);
     }
@@ -123,5 +129,31 @@ public class Tile : MonoBehaviour,
         if(!includeNull)
             result.RemoveAll((Tile t) => t == null);
         return result;
+    }
+
+    public void HitWith(int damage)
+    {
+        Resistance -= damage;
+        for (int i = Height; i > 0 && Resistance < configs.BlockHealthValues[i-1] ; i++)
+        {
+            Lower();
+        }
+        if( Resistance != configs.BlockHealthValues[Height])
+        {
+            blocks.First.Value.SetDamaged();
+        }
+    }
+
+    public void BringDown()
+    {
+        Resistance = 0;
+        while (Height > 0)
+        {
+            Lower();
+        }
+        while(Height < 0)
+        {
+            Raise();
+        }
     }
 }

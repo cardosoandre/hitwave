@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 [RequireComponent(typeof(MeshRenderer))]
 public class Block : MonoBehaviour
@@ -21,5 +22,10 @@ public class Block : MonoBehaviour
     public void OnIdle()
     {
         mr.material = Idle;
+    }
+
+    internal void SetDamaged()
+    {
+        transform.localScale = .8f * Vector3.one;
     }
 }
