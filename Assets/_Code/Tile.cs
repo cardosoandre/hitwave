@@ -162,7 +162,7 @@ public class Tile : MonoBehaviour,
         {
             Lower();
         }
-        if( Resistance != configs.BlockHealthValues[Height])
+        if( Resistance != configs.BlockHealthValues[Height-1])
         {
             blocks.First.Value.SetDamaged();
         }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
+[RequireComponent(typeof(AudioSource))]
 public class WaveManager : MonoBehaviour {
 
     [Inject]
@@ -14,6 +15,7 @@ public class WaveManager : MonoBehaviour {
 
 
 
+    AudioSource audioSource;
     public event Action<float> OnStartNewTimer;
     public event Action OnAdvancedStage;
     public event Action OnEndAllTimers;
@@ -39,6 +41,7 @@ public class WaveManager : MonoBehaviour {
     }
 
     void Start () {
+        audioSource = GetComponent<AudioSource>();
         waves = new LinkedList<Wave>();
         SpawnPoints = new WaveSpawnPoint[transform.childCount];
         int i = 0;
@@ -79,6 +82,7 @@ public class WaveManager : MonoBehaviour {
     }
     Wave RunWaveCommand(WaveCommand cmd)
     {
+        audioSource.Play();
         GameObject waveObject = new GameObject();
         waveObject.transform.position = transform.position;
         int i = 0;

@@ -12,6 +12,7 @@ public class Wave : MonoBehaviour {
     int destroyCommandsLeft = 0;
 
 	void Start () {
+
         deadWaveSegments = new List<WaveSegment>();
         waveSegments = new List<WaveSegment>();
         foreach (Transform child in transform)
