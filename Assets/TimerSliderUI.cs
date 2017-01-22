@@ -16,11 +16,10 @@ public class TimerSliderUI : MonoBehaviour
     [Inject]
     WaveManager mngr;
     Slider slider;
-    void Start()
+    void Awake()
     {
         slider = GetComponent<Slider>();
         mngr.OnAdvancedStage += Mngr_OnAdvancedStage;
-        mngr.OnStartNewTimer += SetTo;
     }
 
     private void Mngr_OnAdvancedStage()
@@ -38,8 +37,5 @@ public class TimerSliderUI : MonoBehaviour
             interp = 1;
         }
         slider.value = Mathf.Lerp(starts[stage], ends[stage], interp);
-    }
-    public void SetTo(float f)
-    {
     }
 }

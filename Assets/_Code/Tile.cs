@@ -87,7 +87,14 @@ public class Tile : MonoBehaviour,
     {
         foreach (var block in blocks)
         {
-            block.OnHover(CanBuildHere);
+            if(cursorManager.CurrentMode == CursorManager.Mode.Forma)
+            {
+                block.OnHover(CanBuildHere);
+            }
+            else if(cursorManager.CurrentMode == CursorManager.Mode.Pa)
+            {
+                block.OnHover(CanDigHere);
+            }
         }
     }
     public void OnPointerExit(PointerEventData eventData)

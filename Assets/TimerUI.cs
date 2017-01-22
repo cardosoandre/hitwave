@@ -10,7 +10,7 @@ public class TimerUI : MonoBehaviour {
     float time;
     [Inject]
     WaveManager mngr;
-	void Start () {
+	void Awake () {
         t = GetComponent<Text>();
         mngr.OnStartNewTimer += SetTo;
 	}
