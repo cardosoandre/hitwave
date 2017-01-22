@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - cmd: {fileID: 11400000, guid: 987d8ebbaf5f66c489c4be28feb86d04, type: 2}
-    waitTime: 60
+    waitTime: 30
   - cmd: {fileID: 11400000, guid: 4c526c90097f350418ab8ecaa040a555, type: 2}
     waitTime: 6
   - cmd: {fileID: 11400000, guid: ec6f49539623bcd46a8f6770376f09fd, type: 2}

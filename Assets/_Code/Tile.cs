@@ -28,6 +28,8 @@ public class Tile : MonoBehaviour,
     {
         get
         {
+            if (Height == configs.BlockHealthValues.Length-1)
+                return false;
             int baseNeighbors = 0;
             foreach (var neighbor in GetNeighbors())
             {
@@ -35,6 +37,16 @@ public class Tile : MonoBehaviour,
                     baseNeighbors++;
             }
             return baseNeighbors >= 2;
+        }
+    }
+    public bool CanDigHere
+    {
+        get
+        {
+            if(Height == -configs.MaxDig)
+                return false;
+
+            return true;
         }
     }
 
@@ -91,8 +103,11 @@ public class Tile : MonoBehaviour,
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
-            player.Sand++;
-            Lower();
+            if (CanDigHere)
+            {
+                player.Sand++;
+                Lower();
+            }
         }
     }
 
@@ -134,7 +149,7 @@ public class Tile : MonoBehaviour,
     public void HitWith(int damage)
     {
         Resistance -= damage;
-        for (int i = Height; i > 0 && Resistance < configs.BlockHealthValues[i-1] ; i++)
+        for (int i = Height; i > 0 && Resistance < configs.BlockHealthValues[i-1] ; i--)
         {
             Lower();
         }

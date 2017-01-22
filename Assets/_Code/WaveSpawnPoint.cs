@@ -10,5 +10,6 @@ public class WaveSpawnPoint:MonoBehaviour
     {
         var wave = GameObject.Instantiate(configs.WavePrefab);
         wave.GetComponent<WaveSegment>().startPower = power;
+        wave.transform.position = transform.position;
     }
 }

@@ -23,3 +23,4 @@ MonoBehaviour:
   TileDepth: 1
   BlockHeight: 1
   WaveSpawnerDistance: 1
+  waveSequence: {fileID: 11400000, guid: f61ec427857b6f64e91c422c0dedc976, type: 2}

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -10,12 +11,14 @@ public class WaveManager : MonoBehaviour {
     public bool JustStart;
     WaveSpawnPoint[] SpawnPoints;
 
+    public event Action<float> OnStartNewTimer;
+
 	void Start () {
         SpawnPoints = new WaveSpawnPoint[transform.childCount];
         int i = 0;
-        foreach (var point in SpawnPoints)
+        foreach (Transform child in transform)
         {
-            SpawnPoints[i] = point;
+            SpawnPoints[i++] = child.GetComponent<WaveSpawnPoint>();
         }
 
         if (JustStart)
@@ -26,6 +29,8 @@ public class WaveManager : MonoBehaviour {
         int i = 0;
         foreach (var wave in seq.waves)
         {
+            if (OnStartNewTimer != null)
+                OnStartNewTimer(wave.waitTime);
             yield return new WaitForSeconds(wave.waitTime);
             Debug.LogFormat("Spawned wave {0}", i++);
             RunWaveCommand(wave.cmd);
@@ -44,7 +49,7 @@ public class WaveManager : MonoBehaviour {
                     return;
                 }
                 SpawnPoints[i].SpawnWave(segment.power);
-
+                i++;
             }
         }
     }
