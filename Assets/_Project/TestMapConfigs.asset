@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5ff5d914056cfc4b86b1c15b1d7da2f, type: 3}
-  m_Name: DefaultMapConfigs
+  m_Name: TestMapConfigs
   m_EditorClassIdentifier: 
   TilePrefab: {fileID: 1526893187568134, guid: 5979c1378f5dfd840972c9f3e92d9737, type: 2}
-  BlockPrefab: {fileID: 1114805684608630, guid: 175cf6ee8e5619c4dae0ec3355eb3609,
+  BlockPrefab: {fileID: 1114805684608630, guid: c221118d3dbce1a4b81131c23f569175,
     type: 2}
   WavePrefab: {fileID: 1461156705185926, guid: fb991c2c1f161a54ba3b87372ba3f4d4, type: 2}
   FlagPrefab: {fileID: 100000, guid: 59d3bb6b4d6e04f7382bd2ed2ab4ed1e, type: 3}
@@ -22,6 +22,9 @@ MonoBehaviour:
   MaxDig: 1
   BlockHealthValues: 0000000002000000060000000c000000
   waveMovement: {x: 0, y: 0, z: 3}
+  block: {fileID: 0}
+  castleStartX: 6
+  castleStartZ: 9
   TileWidth: 1
   TileDepth: 1
   BlockHeight: 1

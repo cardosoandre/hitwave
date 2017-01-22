@@ -9,13 +9,15 @@ public class GameManager : MonoBehaviour {
     [Inject]
     InGameUI ui;
     [Inject]
-    Tile castle;
-
+    Map map;
+    [Inject]
+    MapConfigs configs;
+    
     enum State { Game, Win, Lose }
     State state = State.Game;
 
 	void Start () {
-        castle.OnBroughtDown += Lose;
+        map.Castle.OnBroughtDown += Lose;
         waveManager.OnEndLastWave += () => Win();
 	}
 	

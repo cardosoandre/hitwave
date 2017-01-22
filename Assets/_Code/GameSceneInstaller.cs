@@ -9,7 +9,6 @@ public class GameSceneInstaller:MonoInstaller {
     public WaveManager waveManager;
     public MapConfigs configs;
     public InGameUI inGameUI;
-    public Tile CastleStart;
     public Flag flag;
     
     public override void InstallBindings()
@@ -22,7 +21,6 @@ public class GameSceneInstaller:MonoInstaller {
         Container.Bind<InGameUI>().FromInstance(inGameUI);
         Container.Bind<MapConfigs>().FromInstance(configs);
         Container.Bind<Player>().AsSingle();
-        Container.Bind<Tile>().FromInstance(CastleStart);
         Container.Bind<Flag>().FromInstance(flag);
     }
 }

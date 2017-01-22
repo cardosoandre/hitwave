@@ -6,14 +6,14 @@ using Zenject;
 public class Flag : MonoBehaviour {
 
     [Inject]
-    Tile castle;
+    Map map;
 
 	void Start () {
-        castle.isCastle = true;
-        castle.Raise();
+        map.Castle.isCastle = true;
+        map.Castle.Raise();
 	}
 	
 	void Update () {
-        transform.position = castle.GetTip();
+        transform.position = map.Castle.GetTip();
 	}
 }

@@ -10,10 +10,14 @@ public class Map : MonoBehaviour {
     public MapConfigs configs;
 
 
-    
+
+    public Tile Castle { get; private set; }
+
+
     void Awake()
     {
         SetupTiles();
+        Castle = GetTileAt(configs.castleStartX, configs.castleStartZ);
     }
 	void Start () {
 	}
