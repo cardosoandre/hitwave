@@ -70,7 +70,7 @@ public class WaveManager : MonoBehaviour {
             }
         }
         var wave = waveObject.AddComponent<Wave>();
-        wave.moveDirection = configs.waveMovement;
+        //wave.moveDirection = configs.waveMovement;
         waves.AddLast(wave);
         wave.OnEnd += Wave_OnEnd;
         wave.name = "Wave";

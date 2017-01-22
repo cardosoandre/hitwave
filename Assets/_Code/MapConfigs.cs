@@ -13,6 +13,7 @@ public class MapConfigs : ScriptableObject {
     public int MapZSize;
     public int UndergroundBlocks;
     public int MaxDig = 1;
+    public int ExtraGroundBlock = 1;
     public int[] BlockHealthValues;
     public Vector3 waveMovement = new Vector3(0, 0, 3);
     public Mesh block;

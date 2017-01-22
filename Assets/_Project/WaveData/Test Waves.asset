@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - cmd: {fileID: 11400000, guid: 987d8ebbaf5f66c489c4be28feb86d04, type: 2}
-    waitTime: 0.5
+    waitTime: 3

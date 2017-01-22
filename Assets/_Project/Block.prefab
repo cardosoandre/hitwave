@@ -106,3 +106,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Selected: {fileID: 2100000, guid: 775d22179d199e2438af1adbacd564cc, type: 2}
   Idle: {fileID: 2100000, guid: fdfb7cad5b75776409474d051913eae7, type: 2}
+  blockConfig: {fileID: 11400000, guid: 0437e31e920493442aac9954808fe2d4, type: 2}
+  ShouldBeMesh: {fileID: 0}

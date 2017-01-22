@@ -129,7 +129,9 @@ public class Tile : MonoBehaviour,
         {
             Resistance = configs.BlockHealthValues[Height];
         }
-    
+
+        UpdateBlocks();
+
         Debug.Assert(blocks.First.Value != null);
     }
     public void Lower()
@@ -144,6 +146,7 @@ public class Tile : MonoBehaviour,
                 OnBroughtDown();
             }
         }
+        UpdateBlocks();
     }
     public List<Tile> GetNeighbors(bool includeNull = false)
     {
@@ -186,5 +189,19 @@ public class Tile : MonoBehaviour,
     public Vector3 GetTip()
     {
         return Map.GetTargetPositionFor(PosX, Height, PosZ);
+    }
+    public void UpdateBlocks()
+    {
+
+        //int i = -configs.MaxDig - configs.ExtraGroundBlock;
+        int i = Height-1;
+        bool top = true;
+        foreach (var block in blocks)
+        {
+            block.UpdateVisual(i, top);
+            Debug.Log(string.Format("{0}, {1}, Height({2}", i, top, Height), block);
+            i--;
+            top = false;
+        }
     }
 }
