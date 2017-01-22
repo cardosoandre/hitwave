@@ -24,6 +24,11 @@ public class Block : MonoBehaviour
         mr.material = Idle;
     }
 
+    void UpdateVisual(int Height, bool isTop)
+    {
+
+    }
+
     internal void SetDamaged()
     {
         transform.localScale = .8f * Vector3.one;

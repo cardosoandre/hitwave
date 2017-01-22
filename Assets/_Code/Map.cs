@@ -9,13 +9,6 @@ public class Map : MonoBehaviour {
     [Inject]
     public MapConfigs configs;
 
-    //[HideInInspector]
-    //public int Width, Height;
-    //[HideInInspector]
-    //public float tileWidth, tileDepth, blockHeight;
-    //public GameObject BlockPrefab;
-    //public GameObject TilePrefab;
-
 
     
     void Awake()

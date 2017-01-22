@@ -18,6 +18,10 @@ public class Tile : MonoBehaviour,
     MeshRenderer mr;
     LinkedList<Block> blocks;
 
+    
+    public bool isCastle = false;
+    public event Action OnBroughtDown;
+
 
 
     [HideInInspector]
@@ -43,7 +47,7 @@ public class Tile : MonoBehaviour,
     {
         get
         {
-            if(Height == -configs.MaxDig)
+            if(Height == -configs.MaxDig || isCastle && Height == 1)
                 return false;
 
             return true;
@@ -133,6 +137,13 @@ public class Tile : MonoBehaviour,
         Destroy(blocks.First.Value.gameObject);
         blocks.RemoveFirst();
         Height--;
+        if(Height == 0)
+        {
+            if(OnBroughtDown != null)
+            {
+                OnBroughtDown();
+            }
+        }
     }
     public List<Tile> GetNeighbors(bool includeNull = false)
     {
@@ -159,7 +170,7 @@ public class Tile : MonoBehaviour,
         }
     }
 
-    public void BringDown()
+    public void Flatten()
     {
         Resistance = 0;
         while (Height > 0)
@@ -170,5 +181,10 @@ public class Tile : MonoBehaviour,
         {
             Raise();
         }
+    }
+
+    public Vector3 GetTip()
+    {
+        return Map.GetTargetPositionFor(PosX, Height, PosZ);
     }
 }

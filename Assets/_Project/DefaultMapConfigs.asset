@@ -15,12 +15,15 @@ MonoBehaviour:
   BlockPrefab: {fileID: 1114805684608630, guid: 175cf6ee8e5619c4dae0ec3355eb3609,
     type: 2}
   WavePrefab: {fileID: 1461156705185926, guid: fb991c2c1f161a54ba3b87372ba3f4d4, type: 2}
+  FlagPrefab: {fileID: 100000, guid: 59d3bb6b4d6e04f7382bd2ed2ab4ed1e, type: 3}
   MapXSize: 15
   MapZSize: 10
   UndergroundBlocks: 3
+  MaxDig: 1
   BlockHealthValues: 0000000002000000060000000c000000
+  waveMovement: {x: 0, y: 0, z: 3}
   TileWidth: 1
   TileDepth: 1
   BlockHeight: 1
   WaveSpawnerDistance: 1
-  waveSequence: {fileID: 11400000, guid: f61ec427857b6f64e91c422c0dedc976, type: 2}
+  waveSequence: {fileID: 11400000, guid: 62c3a538889fb294399952f56ba2d608, type: 2}

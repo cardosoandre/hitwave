@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 65239127870591478}
   - component: {fileID: 23110240092287704}
   - component: {fileID: 114022651145578050}
-  - component: {fileID: 114631717006931788}
   - component: {fileID: 54709182703841150}
   m_Layer: 9
   m_Name: WaveSegment
@@ -122,15 +121,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPower: 3
---- !u!114 &114631717006931788
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1461156705185926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 858c2c8c14994784e89f630b164a786d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  v: {x: 0, y: 0, z: 4}

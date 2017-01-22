@@ -6,10 +6,12 @@ public class WaveSpawnPoint:MonoBehaviour
     [Inject]
     MapConfigs configs;
 
-    public void SpawnWave(int power)
+    public WaveSegment SpawnWaveSegment(int power)
     {
         var wave = GameObject.Instantiate(configs.WavePrefab);
-        wave.GetComponent<WaveSegment>().startPower = power;
+        var seg = wave.GetComponent<WaveSegment>();
+        seg.startPower = power;
         wave.transform.position = transform.position;
+        return seg;
     }
 }

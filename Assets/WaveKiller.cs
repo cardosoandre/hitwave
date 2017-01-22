@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestWave : MonoBehaviour {
-    public Vector3 v;
+public class WaveKiller : MonoBehaviour {
+
 	// Use this for initialization
 	void Start () {
-        GetComponent<Rigidbody>().velocity = v;
+		
 	}
 	
 	// Update is called once per frame
