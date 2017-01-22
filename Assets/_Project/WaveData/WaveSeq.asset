@@ -13,30 +13,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - cmd: {fileID: 11400000, guid: 987d8ebbaf5f66c489c4be28feb86d04, type: 2}
-    waitTime: 30
+    waitTime: 2
+    FirstWaveInStage: 1
   - cmd: {fileID: 11400000, guid: 4c526c90097f350418ab8ecaa040a555, type: 2}
     waitTime: 6
+    FirstWaveInStage: 0
   - cmd: {fileID: 11400000, guid: ec6f49539623bcd46a8f6770376f09fd, type: 2}
     waitTime: 8
+    FirstWaveInStage: 0
   - cmd: {fileID: 11400000, guid: f989d8aeca559334aa2b23a6fe28f3c6, type: 2}
     waitTime: 10
+    FirstWaveInStage: 0
   - cmd: {fileID: 11400000, guid: 0d978d81835fec04b997423cb66737cb, type: 2}
     waitTime: 13
+    FirstWaveInStage: 0
   - cmd: {fileID: 11400000, guid: 99bee4ceab5a9864bb3cdbd72f2a7390, type: 2}
     waitTime: 90
+    FirstWaveInStage: 0
   - cmd: {fileID: 11400000, guid: ec6f49539623bcd46a8f6770376f09fd, type: 2}
     waitTime: 15
+    FirstWaveInStage: 0
   - cmd: {fileID: 11400000, guid: f989d8aeca559334aa2b23a6fe28f3c6, type: 2}
     waitTime: 8
+    FirstWaveInStage: 0
   - cmd: {fileID: 11400000, guid: 99bee4ceab5a9864bb3cdbd72f2a7390, type: 2}
     waitTime: 10
+    FirstWaveInStage: 0
   - cmd: {fileID: 11400000, guid: 070a5414966d9ff4faf6d649eab08072, type: 2}
     waitTime: 6
+    FirstWaveInStage: 0
   - cmd: {fileID: 11400000, guid: 4c526c90097f350418ab8ecaa040a555, type: 2}
     waitTime: 120
+    FirstWaveInStage: 0
   - cmd: {fileID: 11400000, guid: 2b0954d7e92f79a4c9cced5284d65cfa, type: 2}
     waitTime: 10
+    FirstWaveInStage: 0
   - cmd: {fileID: 11400000, guid: 987d8ebbaf5f66c489c4be28feb86d04, type: 2}
     waitTime: 5
+    FirstWaveInStage: 0
   - cmd: {fileID: 11400000, guid: 1e73a8925a139b044bff22bf7761f6cf, type: 2}
     waitTime: 15
+    FirstWaveInStage: 0

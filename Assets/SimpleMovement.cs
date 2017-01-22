@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestWave : MonoBehaviour {
-    public Vector3 v;
+public class SimpleMovement : MonoBehaviour {
+    public Vector3 velocity = Vector3.forward;
 	// Use this for initialization
 	void Start () {
-        GetComponent<Rigidbody>().velocity = v;
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+        transform.position += Time.deltaTime * velocity;
 	}
 }

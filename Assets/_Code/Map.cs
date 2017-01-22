@@ -9,18 +9,15 @@ public class Map : MonoBehaviour {
     [Inject]
     public MapConfigs configs;
 
-    //[HideInInspector]
-    //public int Width, Height;
-    //[HideInInspector]
-    //public float tileWidth, tileDepth, blockHeight;
-    //public GameObject BlockPrefab;
-    //public GameObject TilePrefab;
 
 
-    
+    public Tile Castle { get; private set; }
+
+
     void Awake()
     {
         SetupTiles();
+        Castle = GetTileAt(configs.castleStartX, configs.castleStartZ);
     }
 	void Start () {
 	}
