@@ -7,6 +7,7 @@ using UnityEngine;
 [CreateAssetMenu()]
 public class WaveCommand : ScriptableObject
 {
+    public bool IsJustWait = false;
     public List<WaveSegment> Segments;
     [Serializable]
     public class WaveSegment

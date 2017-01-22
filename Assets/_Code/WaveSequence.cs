@@ -13,5 +13,6 @@ public class WaveSequence:ScriptableObject
     {
         public WaveCommand cmd;
         public float waitTime;
+        //public bool FirstWaveInStage = false;
     }
 }

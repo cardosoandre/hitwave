@@ -15,11 +15,28 @@ public class WaveManager : MonoBehaviour {
 
 
     public event Action<float> OnStartNewTimer;
+    public event Action OnAdvancedStage;
     public event Action OnEndAllTimers;
+
 
     public event Action OnEndLastWave;
 
+    public List<float> Timers { get; private set; }
+    public int CurrentStage { get; private set; }
 
+    void SetupTimers()
+    {
+        Timers = new List<float>();
+        int i = -1;
+        foreach (var item in configs.waveSequence.waves)
+        {
+            if (item.cmd.IsJustWait)
+            {
+                Timers.Add(item.waitTime);
+                i++;
+            }
+        }
+    }
 
     void Start () {
         waves = new LinkedList<Wave>();
@@ -29,21 +46,31 @@ public class WaveManager : MonoBehaviour {
         {
             SpawnPoints[i++] = child.GetComponent<WaveSpawnPoint>();
         }
-
+        SetupTimers();
         if (JustStart)
             StartCoroutine(RunWaveSequence(configs.waveSequence));
 	}
     IEnumerator RunWaveSequence(WaveSequence seq)
     {
+        CurrentStage = -1;
         int i = 0;
         Wave wave = null;
         foreach (var waveCommand in seq.waves)
         {
             if (OnStartNewTimer != null)
                 OnStartNewTimer(waveCommand.waitTime);
+            if (waveCommand.cmd.IsJustWait)
+            {
+                CurrentStage++;
+                if(OnAdvancedStage != null)
+                {
+                    OnAdvancedStage();
+                }
+            }
             yield return new WaitForSeconds(waveCommand.waitTime);
             Debug.LogFormat("Spawned wave {0}", i++);
-            wave =RunWaveCommand(waveCommand.cmd);
+            if(!waveCommand.cmd.IsJustWait)
+                wave = RunWaveCommand(waveCommand.cmd);
         }
         if(wave != null)
         {
@@ -91,5 +118,6 @@ public class WaveManager : MonoBehaviour {
             OnEndLastWave();
         }
     }
+
 
 }

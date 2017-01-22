@@ -22,6 +22,6 @@ public class SandUI : MonoBehaviour {
 
     private void Player_OnSandChange()
     {
-        text.text = string.Format("Sand: {0}", player.Sand);
+        text.text = string.Format("{0}", player.Sand);
     }
 }
