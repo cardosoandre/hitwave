@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65491240338223994}
   - component: {fileID: 23246509313105326}
   - component: {fileID: 114179820999590396}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Selected: {fileID: 2100000, guid: 775d22179d199e2438af1adbacd564cc, type: 2}
+  Blocked: {fileID: 2100000, guid: b2249e933f42e4b46af141623442a45d, type: 2}
   Idle: {fileID: 2100000, guid: fdfb7cad5b75776409474d051913eae7, type: 2}
   blockConfig: {fileID: 11400000, guid: 0437e31e920493442aac9954808fe2d4, type: 2}
   ShouldBeMesh: {fileID: 0}

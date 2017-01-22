@@ -20,13 +20,16 @@ MonoBehaviour:
   MapZSize: 10
   UndergroundBlocks: 3
   MaxDig: 1
+  ExtraGroundBlock: 1
   BlockHealthValues: 0000000002000000060000000c000000
   waveMovement: {x: 0, y: 0, z: 3}
-  block: {fileID: 0}
   castleStartX: 6
   castleStartZ: 9
+  paVisual: {fileID: 1579222337009486, guid: 7b33b6601f55e14459830d979a9127d0, type: 2}
+  formaVisual: {fileID: 1699380751203780, guid: b0d23aa52da5f5d4c8dac9d555073f54,
+    type: 2}
   TileWidth: 1
   TileDepth: 1
   BlockHeight: 0.63
   WaveSpawnerDistance: 1
-  waveSequence: {fileID: 11400000, guid: 62c3a538889fb294399952f56ba2d608, type: 2}
+  waveSequence: {fileID: 11400000, guid: 086b28aff81cce6409d1525eb0ee7f5a, type: 2}

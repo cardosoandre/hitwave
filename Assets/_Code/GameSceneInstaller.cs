@@ -7,6 +7,7 @@ public class GameSceneInstaller:MonoInstaller {
     public Map map;
     public GameManager gameManager;
     public WaveManager waveManager;
+    public CursorManager cursorManager;
     public MapConfigs configs;
     public InGameUI inGameUI;
     public Flag flag;
@@ -20,6 +21,7 @@ public class GameSceneInstaller:MonoInstaller {
         Container.Bind<WaveManager>().FromInstance(waveManager);
         Container.Bind<InGameUI>().FromInstance(inGameUI);
         Container.Bind<MapConfigs>().FromInstance(configs);
+        Container.Bind<CursorManager>().FromInstance(cursorManager);
         Container.Bind<Player>().AsSingle();
         Container.Bind<Flag>().FromInstance(flag);
     }

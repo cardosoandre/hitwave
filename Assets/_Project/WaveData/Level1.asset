@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9319f28739e655498dc5291d85b84a3, type: 3}
+  m_Name: Level1
+  m_EditorClassIdentifier: 
+  waves:
+  - cmd: {fileID: 11400000, guid: 8c5fcdc268292584aabf684880f53027, type: 2}
+    waitTime: 60
+  - cmd: {fileID: 11400000, guid: 987d8ebbaf5f66c489c4be28feb86d04, type: 2}
+    waitTime: 0
+  - cmd: {fileID: 11400000, guid: 070a5414966d9ff4faf6d649eab08072, type: 2}
+    waitTime: 6
+  - cmd: {fileID: 11400000, guid: ec6f49539623bcd46a8f6770376f09fd, type: 2}
+    waitTime: 5
+  - cmd: {fileID: 11400000, guid: 4c526c90097f350418ab8ecaa040a555, type: 2}
+    waitTime: 5
+  - cmd: {fileID: 11400000, guid: ec6f49539623bcd46a8f6770376f09fd, type: 2}
+    waitTime: 6
+  - cmd: {fileID: 11400000, guid: 8c5fcdc268292584aabf684880f53027, type: 2}
+    waitTime: 75
+  - cmd: {fileID: 11400000, guid: ec6f49539623bcd46a8f6770376f09fd, type: 2}
+    waitTime: 0
+  - cmd: {fileID: 11400000, guid: f989d8aeca559334aa2b23a6fe28f3c6, type: 2}
+    waitTime: 8
+  - cmd: {fileID: 11400000, guid: a442b2a6b44af4d44abbdd6034da1762, type: 2}
+    waitTime: 10
+  - cmd: {fileID: 11400000, guid: 0d978d81835fec04b997423cb66737cb, type: 2}
+    waitTime: 10
+  - cmd: {fileID: 11400000, guid: 15fcc869dfd26e547a3428b7440dc0a5, type: 2}
+    waitTime: 5
+  - cmd: {fileID: 11400000, guid: a442b2a6b44af4d44abbdd6034da1762, type: 2}
+    waitTime: 8
+  - cmd: {fileID: 11400000, guid: 8c5fcdc268292584aabf684880f53027, type: 2}
+    waitTime: 75
+  - cmd: {fileID: 11400000, guid: a442b2a6b44af4d44abbdd6034da1762, type: 2}
+    waitTime: 0
+  - cmd: {fileID: 11400000, guid: 0d978d81835fec04b997423cb66737cb, type: 2}
+    waitTime: 10
+  - cmd: {fileID: 11400000, guid: 99bee4ceab5a9864bb3cdbd72f2a7390, type: 2}
+    waitTime: 8
+  - cmd: {fileID: 11400000, guid: 1e73a8925a139b044bff22bf7761f6cf, type: 2}
+    waitTime: 10
+  - cmd: {fileID: 11400000, guid: 99bee4ceab5a9864bb3cdbd72f2a7390, type: 2}
+    waitTime: 8
+  - cmd: {fileID: 11400000, guid: 1e73a8925a139b044bff22bf7761f6cf, type: 2}
+    waitTime: 10
+  - cmd: {fileID: 11400000, guid: 99bee4ceab5a9864bb3cdbd72f2a7390, type: 2}
+    waitTime: 8
+  - cmd: {fileID: 11400000, guid: 1e73a8925a139b044bff22bf7761f6cf, type: 2}
+    waitTime: 5

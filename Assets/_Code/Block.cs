@@ -6,10 +6,12 @@ using System;
 public class Block : MonoBehaviour
 {
     public Material Selected;
+    public Material Blocked;
     public Material Idle;
     MeshRenderer mr;
     MeshFilter mf;
     public BlockConfig blockConfig;
+    
 
     public Mesh ShouldBeMesh;
 
@@ -24,9 +26,12 @@ public class Block : MonoBehaviour
     {
 
     }
-    public void OnHover()
+    public void OnHover(bool CanBuild)
     {
-        mr.material = Selected;
+        if (CanBuild)
+            mr.material = Selected;
+        else
+            mr.material = Blocked;
     }
     public void OnIdle()
     {

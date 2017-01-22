@@ -7,13 +7,15 @@ using Zenject;
 
 [RequireComponent(typeof(MeshRenderer))]
 public class Tile : MonoBehaviour, 
-    IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
+    IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerUpHandler {
     [Inject]
     MapConfigs configs;
     [Inject]
     Player player;
     [Inject]
     Map Map;
+    [Inject]
+    CursorManager cursorManager;
 
     MeshRenderer mr;
     LinkedList<Block> blocks;
@@ -85,7 +87,7 @@ public class Tile : MonoBehaviour,
     {
         foreach (var block in blocks)
         {
-            block.OnHover();
+            block.OnHover(CanBuildHere);
         }
     }
     public void OnPointerExit(PointerEventData eventData)
@@ -97,22 +99,8 @@ public class Tile : MonoBehaviour,
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left)
-        {
-            if (CanBuildHere && player.Sand > 0)
-            {
-                player.Sand--;
-                Raise();
-            }
-        }
-        else if (eventData.button == PointerEventData.InputButton.Right)
-        {
-            if (CanDigHere)
-            {
-                player.Sand++;
-                Lower();
-            }
-        }
+        
+
     }
 
     public void Raise()
@@ -202,6 +190,33 @@ public class Tile : MonoBehaviour,
             Debug.Log(string.Format("{0}, {1}, Height({2}", i, top, Height), block);
             i--;
             top = false;
+        }
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        //if (eventData.button == PointerEventData.InputButton.Left)
+        if (cursorManager.CurrentMode == CursorManager.Mode.Forma)
+        {
+            if (CanBuildHere && player.Sand > 0)
+            {
+                player.Sand--;
+                Raise();
+
+                GameObject.Instantiate(configs.formaVisual).transform.position = transform.position + Vector3.up * Height;
+            }
+        }
+        else
+        //if (eventData.button == PointerEventData.InputButton.Right)
+        if (cursorManager.CurrentMode == CursorManager.Mode.Pa)
+        {
+            if (CanDigHere)
+            {
+                player.Sand++;
+                Lower();
+
+                GameObject.Instantiate(configs.paVisual).transform.position = transform.position + Vector3.up * Height;
+            }
         }
     }
 }
