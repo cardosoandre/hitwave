@@ -5,9 +5,12 @@ using UnityEngine;
 public class PlayParticle : MonoBehaviour {
 
 	public ParticleSystem sandust;
+	private AudioSource aud;
 
 	// Use this for initialization
 	void Start () {
+
+		aud = GetComponent<AudioSource> ();
 		
 	}
 	
@@ -18,5 +21,6 @@ public class PlayParticle : MonoBehaviour {
 
 	public void sanDust(){
 		sandust.Play ();
+		aud.Play ();
 	}
 }
