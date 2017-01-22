@@ -385,7 +385,7 @@ AnimationClip:
   m_IsEmpty: 0
   m_Events:
   - time: 0.68333334
-    functionName: 
+    functionName: sanDust
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
