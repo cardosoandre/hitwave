@@ -14,10 +14,13 @@ MonoBehaviour:
   TilePrefab: {fileID: 1526893187568134, guid: 5979c1378f5dfd840972c9f3e92d9737, type: 2}
   BlockPrefab: {fileID: 1114805684608630, guid: 175cf6ee8e5619c4dae0ec3355eb3609,
     type: 2}
-  MapXSize: 10
-  MapZSize: 5
+  WavePrefab: {fileID: 1461156705185926, guid: fb991c2c1f161a54ba3b87372ba3f4d4, type: 2}
+  MapXSize: 15
+  MapZSize: 10
   UndergroundBlocks: 3
   BlockHealthValues: 0000000002000000060000000c000000
   TileWidth: 1
   TileDepth: 1
   BlockHeight: 1
+  WaveSpawnerDistance: 1
+  waveSequence: {fileID: 11400000, guid: f61ec427857b6f64e91c422c0dedc976, type: 2}

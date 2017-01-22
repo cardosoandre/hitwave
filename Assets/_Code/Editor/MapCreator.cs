@@ -25,7 +25,10 @@ public class MapCreator :EditorWindow {
         if (GUILayout.Button("Generate Map"))
         {
             GenerateMap();
-
+        }
+        if(GUILayout.Button("Generate Spawn Point"))
+        {
+            GenerateWaveSpanwers();
         }
     }
 
@@ -71,4 +74,26 @@ public class MapCreator :EditorWindow {
             Undo.RegisterCreatedObjectUndo(row, "Create Map");
         }
     }
+    
+    void GenerateWaveSpanwers()
+    {
+        if(deletePrevious)
+        {
+            var prev = FindObjectOfType<WaveManager>();
+            Undo.DestroyObjectImmediate(prev.gameObject);
+        }
+        GameObject waveManager = new GameObject();
+        waveManager.name = "Wave Manager";
+        waveManager.AddComponent<WaveManager>();
+        waveManager.transform.position = target.position + Vector3.back * configs.WaveSpawnerDistance;
+        for (int i = 0; i < configs.MapXSize; i++)
+        {
+            GameObject waveSpawner = new GameObject();
+            waveSpawner.name = "Spawn Point " + i;
+            waveSpawner.AddComponent<WaveSpawnPoint>();
+            waveSpawner.transform.parent = waveManager.transform;
+            waveSpawner.transform.position = waveManager.transform.position + Vector3.right * configs.TileWidth * (.5f + i);
+        }
+        Undo.RegisterCreatedObjectUndo(waveManager, "Create Wave Manager");
+    }   
 }
